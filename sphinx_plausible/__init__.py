@@ -7,7 +7,6 @@ from ._version import __version__
 
 def setup(app):
 
-
     app.add_config_value(name="plausible_domain",
                          default=None,
                          rebuild="html",
@@ -23,6 +22,9 @@ def setup(app):
 
     def config_hook(app, config):
         """Hook to install the javascript with the right settings"""
+
+        # Provide an easy way to disable the extension, since often you won't
+        # want analytics on dev sites and so on.
         if not config.plausible_enabled:
             return
 
@@ -52,4 +54,3 @@ def setup(app):
         'parallel_read_safe': True,
         'parallel_write_safe': True,
     }
-
