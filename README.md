@@ -52,10 +52,9 @@ Configuration options:
   `my.domain.org`.  Can be a list which will be joined by commas.
 
 * `plausible_script` (default `https://plausible.io/js/script.js`):
-  The URL to the script to load If you want to use the "proxying the
-  script" idea, download the script and put it in `html_static_path`
-  and add the filename (relative to `html_static_path`) here instead
-  of a URL.  (in the future we can automatically download and cache)
+  The URL to the script to load.  If you want to use embed the script,
+  download the script and put it in `html_static_path` and add the
+  filename (relative to `html_static_path`) here instead of a URL.
 
 * `plausible_enabled` (default `True`): Should plausible be active?
   You might want to disable it on all you test deployments and so on,
