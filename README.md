@@ -26,7 +26,10 @@ Configuration options:
   list which will be comma-joined.
 
 * `plausible_script`: The URL to the script to load, default is
-  `https://plausible.io/js/script.js`.
+  `https://plausible.io/js/script.js`.  If you want to use the
+  "proxying the script" idea, download the script and put it in
+  `html_static_path` and add the filename (relative to
+  `html_static_path`) here instead of the absolute path.
 
 * `plausible_enabled`: Should plausible be active?  Default `True`.
   You can limit to only the official deployment with something such as:
@@ -38,11 +41,6 @@ Configuration options:
       and os.environ.get('GITHUB_REPOSITORY', '').lower() == 'aaltoscicomp/scicomp-docs'
       and os.environ.get('GITHUB_REF') == 'refs/heads/master'
 	  )
-
-def do_activate():
-      return environ.get('GITHUB_REPOSITORY', '').lower().startswith('aaltoscicomp')
-
-  plausible_activate_hook = do_activate
   ```
 
 
