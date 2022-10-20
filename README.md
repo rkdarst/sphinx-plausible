@@ -12,18 +12,27 @@ does the correct thing for you.
 
 ## Installation
 
-Install the Python package: on pip it is `sphinx-plausible`.
+Install the Python package: on PyPI it is `sphinx-plausible`.
 
 
 
 ## Usage
 
-Add `sphinx_plausible` to `extensions`:
+Add `sphinx_plausible` to `extensions`.  Example config, if you want
+plausible to only be enabled when your site is deployed by Github
+Pages on the `main` branch in your own repository:
 
 ```python
 extensions = [
     "sphinx_plausible",
 ]
+
+  import os
+  plausible_enabled = (
+      'GITHUB_ACTION' in os.environ
+      and os.environ.get('GITHUB_REPOSITORY', '').lower() == 'aaltoscicomp/scicomp-docs'
+      and os.environ.get('GITHUB_REF') == 'refs/heads/main'
+	  )
 ```
 
 Configuration options:
@@ -41,15 +50,6 @@ Configuration options:
   You might want to disable it on all you test deployments and so on.
   Default `True`.  You can limit to only the official deployment with
   something such as:
-
-  ```python
-  import os
-  plausible_enabled = (
-      'GITHUB_ACTION' in os.environ
-      and os.environ.get('GITHUB_REPOSITORY', '').lower() == 'aaltoscicomp/scicomp-docs'
-      and os.environ.get('GITHUB_REF') == 'refs/heads/master'
-	  )
-  ```
 
 
 ## Status and development
