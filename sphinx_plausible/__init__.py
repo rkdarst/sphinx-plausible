@@ -37,12 +37,9 @@ def setup(app):
             plausible_domain = config.plausible_domain
         script_args['data-domain'] = plausible_domain
 
-        # Surprise! the order matters...
-        #if sphinx.version_info >= (4, 4, 0):
-        #    script_args['loading_method'] = 'defer'
-
+        # Do the actual adding
         app.add_js_file(config.plausible_script,
-                        defer='defer', #loading_method="defer",
+                        defer='defer', #loading_method="defer", sphinx>4.4
                         **script_args,
                         )
         print("plausible.io analytics enabled in this build", script_args)
