@@ -7,11 +7,16 @@ name = "sphinx_plausible"
 authors = [{name = "Richard Darst"}]
 readme = "README.md"
 #license = {file = "LICENSE"}
-classifiers = ["License :: OSI Approved :: MIT License"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Framework :: Sphinx",
+    "Framework :: Sphinx :: Extension",
+    ]
 dynamic = ["version", "description"]
 dependencies = [
     # 1.8: app.add_javascript rename
-    # 4.4: loading_method
+    # 4.4: loading_method='defer' (not used)
     "sphinx>1.8",
 ]
 
