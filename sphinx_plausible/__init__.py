@@ -41,11 +41,11 @@ def setup(app):
         #if sphinx.version_info >= (4, 4, 0):
         #    script_args['loading_method'] = 'defer'
 
-        print(script_args)
         app.add_js_file(config.plausible_script,
                         defer='defer', #loading_method="defer",
                         **script_args,
                         )
+        print("plausible.io analytics enabled in this build", script_args)
 
     # Register the init hook.
     app.connect('config-inited', config_hook)
