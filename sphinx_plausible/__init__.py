@@ -12,22 +12,19 @@ def setup(app):
                          default=None,
                          rebuild="html",
                          types=[str, list])
+    app.add_config_value(name="plausible_enabled",
+                         default=True,
+                         rebuild="html",
+                         types=[bool])
     app.add_config_value(name="plausible_script",
                          default="https://plausible.io/js/script.js",
                          rebuild="html",
                          types=[str])
-    app.add_config_value(name="plausible_activate_hook",
-                         # interestingly, a callable doesn't work (perhaps it
-                         # becomse a method?)
-                         default=None,
-                         rebuild="html")
-
 
     def config_hook(app, config):
         """Hook to install the javascript with the right settings"""
-        if config.plausible_activate_hook:
-            if not config.plausible_activate_hook():
-                return
+        if not config.plausible_enabled:
+            return
 
         script_args = {}
 

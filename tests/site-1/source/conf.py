@@ -19,8 +19,7 @@ plausible_domain="domain-test-1"
 # For tests
 import os
 if 'SPHINX_PLAUSIBLE_DEACTIVATE' in os.environ:
-    def plausible_activate_hook():
-        return False
+    plausible_enabled = False
 
 templates_path = ['_templates']
 exclude_patterns = []

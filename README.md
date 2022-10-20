@@ -28,14 +28,18 @@ Configuration options:
 * `plausible_script`: The URL to the script to load, default is
   `https://plausible.io/js/script.js`.
 
-* `plausible_activate_hook`: A callable, if this returns False, then
-  plausible will *not* be activated.  This acn be used to, for
-  example, only activate it if it's deployed to Github Pages.  The
-  default is to activate.  Example:
+* `plausible_enabled`: Should plausible be active?  Default `True`.
+  You can limit to only the official deployment with something such as:
 
   ```python
   import os
-  def do_activate():
+  plausible_enabled = (
+      'GITHUB_ACTION' in os.environ
+      and os.environ.get('GITHUB_REPOSITORY', '').lower() == 'aaltoscicomp/scicomp-docs'
+      and os.environ.get('GITHUB_REF') == 'refs/heads/master'
+	  )
+
+def do_activate():
       return environ.get('GITHUB_REPOSITORY', '').lower().startswith('aaltoscicomp')
 
   plausible_activate_hook = do_activate
