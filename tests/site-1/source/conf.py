@@ -23,7 +23,7 @@ if 'SPHINX_PLAUSIBLE_DEACTIVATE' in os.environ:
 
 templates_path = ['_templates']
 exclude_patterns = []
-
+master_doc = 'index' # for old sphinx, new name is root_doc but default is OK
 
 
 # -- Options for HTML output -------------------------------------------------
