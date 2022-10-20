@@ -1,41 +1,53 @@
 # Sphinx extension for plausible.io
 
-This extension adds the <https://plausible.io> script tags to a Sphinx
-project.  It doesn't change the template, it uses the standard Sphinx
-hooks to insert javascript directly into any template (that uses the
-standard Sphinx stuff).
+This extension adds the <https://plausible.io> script to a Sphinx
+project by using standard Sphinx javascript insertion tools.  It
+doesn't change the template, and it should work with any template
+(that uses the standard Sphinx javascript insertion, which seems to be
+most of them).
 
-This is currently being tested but in production, please verify it
-does the correct thing for you.
+This is a relatively new project (but being used), so please verify it
+does the correct thing in your case and suggest improvements.
 
 
 
 ## Installation
 
-Install the Python package: on PyPI it is `sphinx-plausible`.
+Install the Python package: on PyPI it is `sphinx-plausible`:
+
+```
+pip install sphinx-plausible
+```
 
 
 
 ## Usage
 
-Add `sphinx_plausible` to `extensions`.  Example config, if you want
-plausible to only be enabled when your site is deployed by Github
-Pages on the `main` branch in your own repository:
+Add `sphinx_plausible` to `extensions`.  Example config:
 
 ```python
 extensions = [
     "sphinx_plausible",
 ]
 
-  import os
-  plausible_enabled = (
-      'GITHUB_ACTION' in os.environ
-      and os.environ.get('GITHUB_REPOSITORY', '').lower() == 'aaltoscicomp/scicomp-docs'
-      and os.environ.get('GITHUB_REF') == 'refs/heads/main'
-	  )
+plausible_domain = my.domain.org
+```
+
+If you want Plausible to only be enabled when your site is deployed by
+Github Actions on the `main` branch in your own repository (remember
+to update `organization/repo-name`):
+
+```python
+import os
+plausible_enabled = (
+    'GITHUB_ACTION' in os.environ
+    and os.environ.get('GITHUB_REPOSITORY', '').lower() == 'organization-name/repo-name'
+    and os.environ.get('GITHUB_REF') == 'refs/heads/main'
+	)
 ```
 
 Configuration options:
+
 * `plausible_domain` (required): The domain name, like
   `my.domain.org`.  Can be a list which will be joined by commas.
 
@@ -43,16 +55,22 @@ Configuration options:
   The URL to the script to load If you want to use the "proxying the
   script" idea, download the script and put it in `html_static_path`
   and add the filename (relative to `html_static_path`) here instead
-  of the absolute path.  (in the future we can automatically download
-  and cache)
+  of a URL.  (in the future we can automatically download and cache)
 
 * `plausible_enabled` (default `True`): Should plausible be active?
-  You might want to disable it on all you test deployments and so on.
-  Default `True`.  You can limit to only the official deployment with
-  something such as:
+  You might want to disable it on all you test deployments and so on,
+  so you can add some logic to enable/disable as needed.
+
 
 
 ## Status and development
 
 Beta but works as of 2022 - improvements and feature requests are
-still welcome!
+still welcome!  I would be happy for a group maintenance home for
+this.
+
+
+
+## See also
+
+* https://plausible.io/docs/plausible-script
