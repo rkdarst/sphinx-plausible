@@ -30,7 +30,7 @@ extensions = [
     "sphinx_plausible",
 ]
 
-plausible_domain = my.domain.org
+plausible_domain = "my.domain.org"
 ```
 
 If you want Plausible to only be enabled when your site is deployed by
@@ -43,7 +43,7 @@ plausible_enabled = (
     'GITHUB_ACTION' in os.environ
     and os.environ.get('GITHUB_REPOSITORY', '').lower() == 'organization-name/repo-name'
     and os.environ.get('GITHUB_REF') == 'refs/heads/main'
-	)
+    )
 ```
 
 Configuration options:
