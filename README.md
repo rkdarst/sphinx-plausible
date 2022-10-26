@@ -11,6 +11,21 @@ does the correct thing in your case and suggest improvements.
 
 
 
+## Plausible without this extension
+
+Actually, this extension isn't needed, you can directly add a script
+with the required tags by doing the following.  This uses the same
+insertion mechanism as this extension, and thus should work with any
+well-designed theme with no modifications:
+
+```python
+html_js_files = [
+    ('https://plausible.io/js/script.js', {"data-domain": "yourdomain.com", "defer": "defer"}),
+]
+```
+
+
+
 ## Installation
 
 Install the Python package: on PyPI it is `sphinx-plausible`:
