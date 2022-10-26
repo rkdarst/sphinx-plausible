@@ -16,8 +16,8 @@ classifiers = [
 dynamic = ["version", "description"]
 requires-python = ">=3"
 dependencies = [
-    # 1.8: app.add_javascript rename
-    # 4.4: loading_method='defer' (not used)
+    # 1.8: app.add_javascript rename (used)
+    # 4.4: provides add_js_file(loading_method='defer') (not used)
     "sphinx>1.8",
 ]
 

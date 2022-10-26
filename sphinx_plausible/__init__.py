@@ -21,7 +21,10 @@ def setup(app):
                          types=[str])
 
     def config_hook(app, config):
-        """Hook to install the javascript with the right settings"""
+        """Hook to install the javascript with the right settings.
+
+        Must be a hook since it depends on the other config values.
+        """
 
         # Provide an easy way to disable the extension, since often you won't
         # want analytics on dev sites and so on.
@@ -41,7 +44,11 @@ def setup(app):
 
         # Do the actual adding
         app.add_js_file(config.plausible_script,
-                        defer='defer', #loading_method="defer", sphinx>4.4
+                        # sphinx>4.4 adds the loading_method="defer" argument,
+                        # but `defer="defer"` in the <script ...> tag works the
+                        # same.  For now, we focus on compatibility and
+                        # reducing branches than perfection.
+                        defer='defer',
                         **script_args,
                         )
         print("plausible.io analytics enabled in this build", script_args)
